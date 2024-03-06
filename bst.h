@@ -241,6 +241,7 @@ protected:
     static Node<Key, Value>* predecessor(Node<Key, Value>* current); // TODO
     // Note:  static means these functions don't have a "this" pointer
     //        and instead just use the input argument.
+    static Node<Key, Value>* successor(Node<Key, Value>* current);
 
     // Provided helper functions
     virtual void printRoot (Node<Key, Value> *r) const;
@@ -267,6 +268,7 @@ template<class Key, class Value>
 BinarySearchTree<Key, Value>::iterator::iterator(Node<Key,Value> *ptr)
 {
     // TODO
+    current_ = ptr;
 }
 
 /**
@@ -276,7 +278,7 @@ template<class Key, class Value>
 BinarySearchTree<Key, Value>::iterator::iterator() 
 {
     // TODO
-
+    current_ = nullptr;
 }
 
 /**
@@ -309,6 +311,11 @@ BinarySearchTree<Key, Value>::iterator::operator==(
     const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
+    if (current_->Value == rhs->Value && current_->Key == rhs->Key){
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -321,6 +328,11 @@ BinarySearchTree<Key, Value>::iterator::operator!=(
     const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
+    if (current_->Value == rhs->Value && current_->Key == rhs->Key){
+        return false;
+    }
+
+    return true;
 
 }
 
@@ -333,7 +345,7 @@ typename BinarySearchTree<Key, Value>::iterator&
 BinarySearchTree<Key, Value>::iterator::operator++()
 {
     // TODO
-
+    current_ = successor(current_);
 }
 
 
@@ -356,13 +368,14 @@ template<class Key, class Value>
 BinarySearchTree<Key, Value>::BinarySearchTree() 
 {
     // TODO
+    root_ = nullptr;
 }
 
 template<typename Key, typename Value>
 BinarySearchTree<Key, Value>::~BinarySearchTree()
 {
     // TODO
-
+    clear();
 }
 
 /**
@@ -445,6 +458,14 @@ template<class Key, class Value>
 void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair)
 {
     // TODO
+
+    /* create a new Node n
+    Node* curr, starts at root_
+    if curr no left child, put at left
+    if curr no right child, put at right
+
+    else, if value <= curr->value, go left
+    if value > curr->value, go right */
 }
 
 
@@ -457,6 +478,8 @@ template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::remove(const Key& key)
 {
     // TODO
+
+
 }
 
 
@@ -466,6 +489,20 @@ Node<Key, Value>*
 BinarySearchTree<Key, Value>::predecessor(Node<Key, Value>* current)
 {
     // TODO
+    /* if left child exists, predecessor is the right most node of the left subtree
+    else, walk up until you find the parent of the first right child */
+
+}
+
+
+template<class Key, class Value>
+Node<Key, Value>*
+BinarySearchTree<Key, Value>::successor(Node<Key, Value>* current)
+{
+    // TODO
+
+    /* if right child exists, successor is the left most node of the right subtree
+    else, walk up until you find the first parent who has a left child */
 }
 
 
