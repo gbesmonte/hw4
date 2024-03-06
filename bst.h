@@ -466,6 +466,8 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
 
     else, if value <= curr->value, go left
     if value > curr->value, go right */
+
+    //TEST COMMIT
 }
 
 
