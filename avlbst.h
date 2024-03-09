@@ -202,6 +202,7 @@ void AVLTree<Key, Value>::insert (const std::pair<const Key, Value> &new_item)
             curr = curr->getRight();
         }
     }
+    //this->printRoot(this->root_);
 }
 
 template<class Key, class Value>
@@ -212,7 +213,7 @@ void AVLTree<Key, Value>::insertFix(AVLNode<Key,Value>* p, AVLNode<Key,Value>* n
     AVLNode<Key,Value>* g = p->getParent();
     //if p is the left child of g
     if (g->getLeft() == p){
-        g->updateBalance(-1);
+        g->updateBalance(static_cast<int8_t>(-1));
         if (g->getBalance() == 0){
             return;
         }
@@ -228,19 +229,20 @@ void AVLTree<Key, Value>::insertFix(AVLNode<Key,Value>* p, AVLNode<Key,Value>* n
             }
             //if zig zag
             else if (p->getRight() == n){
+                int8_t nBal = n->getBalance();
                 rotateLeft(p);
                 rotateRight(g);
-                if (n->getBalance() == -1){
+                if (nBal == -1){
                     p->setBalance(0);
                     g->setBalance(1);
                     n->setBalance(0);
                 }
-                else if (n->getBalance() == 0){
+                else if (nBal == 0){
                     p->setBalance(0);
                     g->setBalance(0);
                     n->setBalance(0);
                 }
-                else if (n->getBalance() == 1){
+                else if (nBal == 1){
                     p->setBalance(-1);
                     g->setBalance(0);
                     n->setBalance(0);
@@ -250,7 +252,7 @@ void AVLTree<Key, Value>::insertFix(AVLNode<Key,Value>* p, AVLNode<Key,Value>* n
     }
     //if p is the right child of g
     else if (g->getRight() == p){
-        g->updateBalance(1);
+        g->updateBalance(static_cast<int8_t>(1));
         if (g->getBalance() == 0){
             return;
         }
@@ -264,21 +266,22 @@ void AVLTree<Key, Value>::insertFix(AVLNode<Key,Value>* p, AVLNode<Key,Value>* n
                 p->setBalance(0);
                 g->setBalance(0);
             }
-                //if zig zag
+            //if zig zag
             else if (p->getLeft() == n){
+                int8_t nBal = n->getBalance();
                 rotateRight(p);
                 rotateLeft(g);
-                if (n->getBalance() == 1){
+                if (nBal == 1){
                     p->setBalance(0);
                     g->setBalance(-1);
                     n->setBalance(0);
                 }
-                else if (n->getBalance() == 0){
+                else if (nBal == 0){
                     p->setBalance(0);
                     g->setBalance(0);
                     n->setBalance(0);
                 }
-                else if (n->getBalance() == -1){
+                else if (nBal == -1){
                     p->setBalance(1);
                     g->setBalance(0);
                     n->setBalance(0);

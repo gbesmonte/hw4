@@ -36,13 +36,20 @@ int main(int argc, char *argv[])
     }
 */
     // AVL Tree Tests
-    AVLTree<int,int> at;
-    at.insert(std::make_pair(2, 9));
-    at.insert(std::make_pair(0, 8));
-    at.insert(std::make_pair(1, 159));
+    AVLTree<uint16_t, uint16_t> testTree;
+
+    testTree.insert(std::make_pair(10, 8));
+    testTree.insert(std::make_pair(20, 159));
+    testTree.insert(std::make_pair(30, 9));
+    testTree.insert(std::make_pair(15, 0x5a));
+    testTree.insert(std::make_pair(25, 0xb));
+    testTree.insert(std::make_pair(12, 4));
+    testTree.insert(std::make_pair(5, 159));
+    testTree.insert(std::make_pair(3, 159));
+    testTree.insert(std::make_pair(8, 159));
 
     cout << "\nAVLTree contents:" << endl;
-    for(AVLTree<int,int>::iterator it = at.begin(); it != at.end(); ++it) {
+    for(AVLTree<uint16_t, uint16_t>::iterator it = testTree.begin(); it != testTree.end(); ++it) {
         cout << it->first << " " << it->second << endl;
     }
 /*    if(at.find('b') != at.end()) {
