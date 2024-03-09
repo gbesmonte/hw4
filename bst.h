@@ -582,7 +582,6 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
                 n->getLeft()->setParent(temp);
             }
             delete n;
-            //temp->setLeft(nullptr);
             break;
         }
         if (n->getLeft() == nullptr && n->getRight() != nullptr) {
@@ -600,14 +599,12 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
                 n->getLeft()->setParent(temp);
             }
             delete n;
-            //temp->setRight(nullptr);
             break;
         }
         //Case 3
         if (n->getLeft() != nullptr && n->getRight() != nullptr) {
             Node<Key, Value>* pred = predecessor(n);
             nodeSwap(pred, n);
-            n = pred;
             continue;
         }
     }
@@ -632,7 +629,7 @@ BinarySearchTree<Key, Value>::predecessor(Node<Key, Value>* current)
     else{
         Node<Key, Value>* n = current;
         while (n->getParent() != nullptr) {
-            if (n->getParent()->getRight() != nullptr) {
+            if (n->getParent()->getRight() != n) {
                 n = n->getParent();
                 return n;
             }
@@ -649,7 +646,7 @@ BinarySearchTree<Key, Value>::successor(Node<Key, Value>* current)
 {
     // TODO
     /* if right child exists, successor is the left most node of the right subtree
-    else, walk up until you find the first parent who has a left child */
+    else, walk up until you find the left child pointer. parent of that is successor */
     if (current->getRight() != nullptr){
         Node<Key,Value>* n = current->getRight();
         while (n->getLeft() != nullptr){
@@ -660,7 +657,7 @@ BinarySearchTree<Key, Value>::successor(Node<Key, Value>* current)
     else{
         Node<Key, Value>* n = current;
         while (n->getParent() != nullptr){
-            if (n->getParent()->getLeft() != nullptr){
+            if (n->getParent()->getLeft() == n){
                 n = n->getParent();
                 return n;
             }
