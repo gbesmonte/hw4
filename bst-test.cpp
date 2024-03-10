@@ -38,28 +38,33 @@ int main(int argc, char *argv[])
     // AVL Tree Tests
     AVLTree<uint16_t, uint16_t> testTree;
 
-    testTree.insert(std::make_pair(10, 8));
-    testTree.insert(std::make_pair(20, 159));
-    testTree.insert(std::make_pair(30, 9));
-    testTree.insert(std::make_pair(15, 0x5a));
-    testTree.insert(std::make_pair(25, 0xb));
-    testTree.insert(std::make_pair(12, 4));
-    testTree.insert(std::make_pair(5, 159));
-    testTree.insert(std::make_pair(3, 159));
-    testTree.insert(std::make_pair(8, 159));
+    testTree.insert(std::make_pair(-142, -142));
+    testTree.insert(std::make_pair(-73, -73));
+    testTree.insert(std::make_pair(-64, -64));
+    testTree.insert(std::make_pair(-61, -61));
+    testTree.insert(std::make_pair(-53, -53));
+    testTree.insert(std::make_pair(2, 2));
+    testTree.insert(std::make_pair(28, 28));
+    testTree.insert(std::make_pair(50, 50));
+    testTree.insert(std::make_pair(71, 71));
+    testTree.insert(std::make_pair(75, 75));
+    testTree.insert(std::make_pair(76, 76));
+    testTree.insert(std::make_pair(106, 106));
+    testTree.insert(std::make_pair(147, 147));
 
-    cout << "\nAVLTree contents:" << endl;
+    /* cout << "\nAVLTree contents:" << endl;
     for(AVLTree<uint16_t, uint16_t>::iterator it = testTree.begin(); it != testTree.end(); ++it) {
         cout << it->first << " " << it->second << endl;
-    }
-/*    if(at.find('b') != at.end()) {
-        cout << "Found b" << endl;
-    }
-    else {
-        cout << "Did not find b" << endl;
-    }
-    cout << "Erasing b" << endl;
+    } */
+
+ /* cout << "Erasing b" << endl;
     at.remove('b'); */
+
+    testTree.remove(76);
+    testTree.remove(147);
+    testTree.remove(-142);
+    testTree.remove(-64);
+    testTree.remove(-73);
 
     return 0;
 }
